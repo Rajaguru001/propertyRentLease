@@ -100,14 +100,14 @@ public class PropertyRentLeaseDAO {
 
     }
 
-    public void sellerdetailsinsert(int ownerid, String propertyType, int sqft, String furnishing, Date availableFrom,
-            int rentPrice, String address, Date postedDate, InputStream ebBillInputStream,
+    public void sellerdetailsinsert(String location,int ownerid, String propertyType, int sqft, String furnishing, Date availableFrom,
+            int rentPrice, String address, Date postedOnDate, InputStream ebBillInputStream,
             List<InputStream> propertyImagesInputStreamList) throws ClassNotFoundException, SQLException {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         try {
             connection = ConnectionTable.getConnection();
-            String insertPropertyDetailsQuery = "INSERT INTO property_details (property_type, sqft, furnishing, available_from, rent, address, posted_on_date, EB_Bill,owner_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?,?)";
+            String insertPropertyDetailsQuery = "INSERT INTO property_details (property_type, sqft, furnishing, available_from, rent, address, posted_on_date, EB_Bill,owner_id,location) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ? ,?)";
             preparedStatement = connection.prepareStatement(insertPropertyDetailsQuery);
             preparedStatement.setString(1, propertyType);
             preparedStatement.setInt(2, sqft);
@@ -115,12 +115,14 @@ public class PropertyRentLeaseDAO {
             preparedStatement.setDate(4, new java.sql.Date(availableFrom.getTime()));
             preparedStatement.setInt(5, rentPrice);
             preparedStatement.setString(6, address);
-            preparedStatement.setDate(7, new java.sql.Date(postedDate.getTime()));
+            preparedStatement.setDate(7, new java.sql.Date(postedOnDate.getTime()));
             preparedStatement.setBinaryStream(8, ebBillInputStream);
             preparedStatement.setInt(9, ownerid);
+            preparedStatement.setString(10, location);
+            
             preparedStatement.executeUpdate();
 
-            // Get the auto-generated property ID
+
             int propertyId;
             String getLastInsertedIdQuery = "SELECT LAST_INSERT_ID()";
             preparedStatement = connection.prepareStatement(getLastInsertedIdQuery);
@@ -128,7 +130,7 @@ public class PropertyRentLeaseDAO {
             resultSet.next();
             propertyId = resultSet.getInt(1);
 
-            // Insert property images
+            
             String insertPropertyImagesQuery = "INSERT INTO property_images (images, property_id) VALUES (?, ?)";
             for (InputStream propertyImageInputStream : propertyImagesInputStreamList) {
                 preparedStatement = connection.prepareStatement(insertPropertyImagesQuery);
@@ -196,11 +198,12 @@ public class PropertyRentLeaseDAO {
                 spf.setAvailableFrom(resultSet.getDate("available_from"));
                 spf.setRent(resultSet.getInt("rent"));
                 spf.setAddress(resultSet.getString("address"));
-                spf.setAvailableFrom(resultSet.getDate("posted_on_date"));
+                spf.setPostedOnDate(resultSet.getDate("posted_on_date"));
                 spf.setEbBillStream(resultSet.getAsciiStream("eb_bill"));
                 spf.setOwnerId(resultSet.getInt("owner_id"));
                 spf.setApproval(false);
                 Blob blob = resultSet.getBlob("EB_Bill");
+                spf.setLocation(resultSet.getString("location"));
                 InputStream inputStream = BlobToInputStreamConverter.convertBlobToInputStream(blob);
 
                 val.add(spf);
@@ -238,12 +241,33 @@ public class PropertyRentLeaseDAO {
             try (ResultSet imageResultSet = imageStatement.executeQuery()) {
                 while (imageResultSet.next()) {
                     int imageId = imageResultSet.getInt("image_id");
-                    byte[] imageBytes = imageResultSet.getBytes("image");
+                    byte[] imageBytes = imageResultSet.getBytes("images");
                     propertyImages.add(new PropertyImage(imageId, imageBytes, propertyId));
                 }
             }
         }
         return propertyImages;
     }
+
+        public void approveProperty(int propertyId) throws SQLException, ClassNotFoundException {
+            Connection connection = null;
+            PreparedStatement statement = null;
+            try {
+                connection = ConnectionTable.getConnection();
+                String sql = "update property_details set is_approval =true  where property_id ='?'";
+                statement = connection.prepareStatement(sql);
+              
+                statement.setInt(1, propertyId);
+                statement.executeUpdate();
+            } finally {
+                if (statement != null) {
+                    statement.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            }
+        }
+    
 
 }

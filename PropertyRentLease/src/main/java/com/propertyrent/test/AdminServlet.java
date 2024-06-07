@@ -43,4 +43,22 @@ public class AdminServlet extends HttpServlet {
         // Forward to admin JSP
         request.getRequestDispatcher("admin-dashboard.jsp").forward(request, response);
     }
+    
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        int propertyIdStr = Integer.parseInt(request.getParameter("propertyId"));
+        if (propertyIdStr != 0)  {
+//            int propertyId = Integer.parseInt(propertyIdStr);
+//            boolean isapproval=Boolean.parseBoolean(request.getParameter("isapproval"));
+            PropertyRentLeaseDAO propertyDAO = new PropertyRentLeaseDAO();
+            try {
+                propertyDAO.approveProperty(propertyIdStr);
+            } catch (SQLException | ClassNotFoundException e) {
+                e.printStackTrace();
+                // Handle exception
+            }
+        }
+        // Redirect to doGet for displaying updated data
+        response.sendRedirect("ContentPage.jsp");
+    }
 }

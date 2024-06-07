@@ -15,8 +15,17 @@ public class SellerPropertyForm {
 	    private String address;
 	    private Date postedOnDate;
 	    private InputStream ebBillStream;
+	    private String location;
 
-	    public InputStream getEbBillStream() {
+	    public String getLocation() {
+			return location;
+		}
+
+		public void setLocation(String location) {
+			this.location = location;
+		}
+
+		public InputStream getEbBillStream() {
 	        return ebBillStream;
 	    }
 
@@ -93,7 +102,7 @@ public class SellerPropertyForm {
 			return subscriptionId;
 		}
 		public SellerPropertyForm(int ownerid,int propertyId, String propertyType, int sqft, String furnishing, Date availableFrom,
-		        int rent, String address, Date postedOnDate, InputStream ebBillStream, int ownerId, int rentId, int subscriptionId,
+		        int rent, String address, Date postedOnDate,String location, InputStream ebBillStream, int ownerId, int rentId, int subscriptionId,
 		        boolean isApproval) {
 		    super();
 		    this.ownerId=ownerid;
@@ -105,6 +114,7 @@ public class SellerPropertyForm {
 		    this.rent = rent;
 		    this.address = address;
 		    this.postedOnDate = postedOnDate;
+		    this.location=location;
 		    this.ebBillStream = ebBillStream;
 		    this.ownerId = ownerId;
 		    this.rentId = rentId;
@@ -113,6 +123,11 @@ public class SellerPropertyForm {
 		}
 
 		
+		public SellerPropertyForm(String location) {
+			super();
+			this.location = location;
+		}
+
 		public SellerPropertyForm() {
 			// TODO Auto-generated constructor stub
 		}

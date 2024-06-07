@@ -6,11 +6,10 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Property Rent Form</title>
 </head>
 <body>
 
- 
 <form id="propertyForm" action="PropertyRentSellerForm" method="post" enctype="multipart/form-data"> 
   <table>
     <label for="property_type">Property Type:</label>
@@ -33,31 +32,34 @@
     
     <label for="posted_on_date">Posted on Date:</label>
     <input type="date" id="posted_on_date" name="posted_on_date" required><br>
-  
+    
+    <label for="location">Location:</label> <!-- Corrected label -->
+    <input type="text" id="location" name="location" required><br> <!-- New input field -->
+    
+    
+    
     <label for="EB_Bill">EB Bill:</label>
     <input type="file" id="EB_Bill" name="EB_Bill" accept="image/*" required><br>
     
     <label for="property_images">Property Images:</label>
     <input type="file" id="property_images" name="property_images" accept="image/*" multiple required><br>
+    
     <% 
     UsersInfo userId=(UsersInfo)session.getAttribute("user"); 
-    
     %>
-    <input type="number" value=<%=userId.getId()%> name="id">
+    <input type="hidden" value=<%=userId.getId()%> name="id"> 
     
     <button type="submit">Submit</button>
-</form>
-</table>
+  </table>
 </form>
 
 <script>
 document.getElementById("propertyForm").addEventListener("submit", function(event){
     event.preventDefault(); 
 
- 
     alert("Thanks for submission!");
     
-     this.submit();
+    this.submit();
 });
 </script>
 

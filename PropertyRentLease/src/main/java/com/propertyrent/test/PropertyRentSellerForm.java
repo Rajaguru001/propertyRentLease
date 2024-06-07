@@ -54,12 +54,13 @@ public class PropertyRentSellerForm extends HttpServlet {
 		int rentPrice = Integer.parseInt(request.getParameter("rent_price"));
 		String address = request.getParameter("address");
 		String postedDateStr = request.getParameter("posted_on_date");
-		Date postedDate = null;
+		Date postedOnDate = null;
 		try {
-			postedDate = new SimpleDateFormat("yyyy-MM-dd").parse(postedDateStr);
+			postedOnDate = new SimpleDateFormat("yyyy-MM-dd").parse(postedDateStr);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
+		String location=request.getParameter("location");
 
 		InputStream ebBillInputStream = null;
 		Part ebBillPart = request.getPart("EB_Bill");
@@ -74,10 +75,11 @@ public class PropertyRentSellerForm extends HttpServlet {
 		for (Part propertyImagesPart : propertyImagesParts) {
 			propertyImagesInputStreamList.add(propertyImagesPart.getInputStream());
 		}
+		boolean isapproval = Boolean.parseBoolean(request.getParameter("isapproval"));
 
 		try {
-			prl.sellerdetailsinsert(ownerid, propertyType, sqft, furnishing, availableFrom, rentPrice, address,
-					postedDate, ebBillInputStream, propertyImagesInputStreamList);
+			prl.sellerdetailsinsert(location,ownerid, propertyType, sqft, furnishing, availableFrom, rentPrice, address,
+					postedOnDate, ebBillInputStream, propertyImagesInputStreamList);
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
