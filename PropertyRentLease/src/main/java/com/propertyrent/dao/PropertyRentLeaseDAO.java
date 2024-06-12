@@ -400,4 +400,24 @@ public class PropertyRentLeaseDAO {
 		
 		return userComments;
  }
+ 
+ public String owneremailid(int sellerid) throws ClassNotFoundException, SQLException {
+	 Connection connection = null;
+	 PreparedStatement preparedStatement = null;
+		connection = ConnectionTable.getConnection();
+		String query="select email from users where user_id=? ";
+		preparedStatement = connection.prepareStatement(query);
+		preparedStatement.setInt(1, sellerid);
+		ResultSet resultSet=preparedStatement.executeQuery();
+		String mail=null;
+		while(resultSet.next()) {
+			mail= resultSet.getString("email");
+			System.out.println("the email"+mail);
+		}
+		
+		
+		return mail;
+		
+ }
+ 
 }
