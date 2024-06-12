@@ -24,41 +24,32 @@ public class AdminServlet extends HttpServlet {
             throws ServletException, IOException {
         PropertyRentLeaseDAO propertyLeaseDAO = new PropertyRentLeaseDAO();
         
-        // Retrieve property details from DAO
-        List<SellerPropertyForm> propertyDetailsList=null;
-        List<PropertyImage>propertyimages=null;
-		try {
-			propertyDetailsList = propertyLeaseDAO.getPropertyDetails();
-			
-			
-			System.out.println("the value are:"+propertyDetailsList);
-		} catch (ClassNotFoundException | SQLException e) {
+     
+        List<SellerPropertyForm> approvedProperties = null;
+        try {
+            approvedProperties = propertyLeaseDAO.getApprovedProperties();
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
 
-			e.printStackTrace();
-		}
+        request.setAttribute("approvedProperties", approvedProperties);
         
-        // Set data as request attribute
-        request.setAttribute("propertyDetailsList", propertyDetailsList);
         
-        // Forward to admin JSP
-        request.getRequestDispatcher("admin-dashboard.jsp").forward(request, response);
-    }
+        request.getRequestDispatcher("ApprovedProperty.jsp").forward(request, response);
+}
     
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int propertyIdStr = Integer.parseInt(request.getParameter("propertyId"));
-        if (propertyIdStr != 0)  {
-//            int propertyId = Integer.parseInt(propertyIdStr);
-//            boolean isapproval=Boolean.parseBoolean(request.getParameter("isapproval"));
+        int propertyId = Integer.parseInt(request.getParameter("propertyId"));
+        if (propertyId != 0) {
             PropertyRentLeaseDAO propertyDAO = new PropertyRentLeaseDAO();
             try {
-                propertyDAO.approveProperty(propertyIdStr);
+                propertyDAO.approveProperty(propertyId);
             } catch (SQLException | ClassNotFoundException e) {
                 e.printStackTrace();
-                // Handle exception
+               
             }
         }
-        // Redirect to doGet for displaying updated data
-        response.sendRedirect("ContentPage.jsp");
+        response.sendRedirect("AdminDashBoard.jsp");
     }
 }

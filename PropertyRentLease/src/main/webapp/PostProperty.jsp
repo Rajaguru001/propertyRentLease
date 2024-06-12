@@ -33,8 +33,8 @@
     <label for="posted_on_date">Posted on Date:</label>
     <input type="date" id="posted_on_date" name="posted_on_date" required><br>
     
-    <label for="location">Location:</label> <!-- Corrected label -->
-    <input type="text" id="location" name="location" required><br> <!-- New input field -->
+    <label for="location">Location:</label> 
+    <input type="text" id="location" name="location" required><br> 
     
     
     

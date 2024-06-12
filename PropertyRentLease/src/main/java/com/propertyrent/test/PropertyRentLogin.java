@@ -97,18 +97,7 @@ public class PropertyRentLogin extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
-//		String username=request.getParameter("name");
-//		String password=request.getParameter("Password");
-//		UsersInfo User= new UsersInfo(username,password);
-//		PropertyRentLeaseDAO prl=new PropertyRentLeaseDAO();
-//		try {
-//			prl.logincheck(User);
-//			RequestDispatcher dispatcher = request.getRequestDispatcher("");
-//			dispatcher.forward(request, response);
-//
-//		} catch (ClassNotFoundException | SQLException e) {
-//			e.printStackTrace();
-//		}
+
 		
 	}
 
