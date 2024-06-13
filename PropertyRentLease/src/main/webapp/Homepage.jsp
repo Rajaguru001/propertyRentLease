@@ -131,11 +131,11 @@
 }
 
 .company-name {
-    font-family: 'Arial', sans-serif; /* Add desired font family */
-    font-size: 24px; /* Adjust font size as needed */
-    font-style: italic; /* Add italic style */
-    font-weight: bold; /* Add bold weight */
-    color: white; /* Set color to white */
+    font-family: 'Arial', sans-serif; 
+    font-size: 24px; 
+    font-style: italic; 
+    font-weight: bold;
+    color: white; 
 }
     </style>
 </head>

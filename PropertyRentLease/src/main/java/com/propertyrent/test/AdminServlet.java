@@ -31,6 +31,7 @@ public class AdminServlet extends HttpServlet {
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
+        
 
         request.setAttribute("approvedProperties", approvedProperties);
         
@@ -49,6 +50,7 @@ public class AdminServlet extends HttpServlet {
                 e.printStackTrace();
                
             }
+            
         }
         response.sendRedirect("AdminDashBoard.jsp");
     }

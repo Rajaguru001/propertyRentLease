@@ -16,11 +16,11 @@
         .navbar {
             background-color:#FF204E;
             overflow: hidden;
-            margin-bottom: 20px; /* Add some space below navbar */
+            margin-bottom: 20px; 
         }
 
         .navbar a {
-            display: inline-block; /* Display links inline */
+            display: inline-block;
             color: white;
             text-align: center;
             padding: 14px 20px;
@@ -32,7 +32,7 @@
         }
 
         .container {
-            margin: 0 auto 20px; /* Center container and add space below */
+            margin: 0 auto 20px; 
             background-color: white;
             padding: 50px;
             border-radius: 20px;

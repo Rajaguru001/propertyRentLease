@@ -412,6 +412,7 @@ public class PropertyRentLeaseDAO {
 		String mail=null;
 		while(resultSet.next()) {
 			mail= resultSet.getString("email");
+			System.out.println("id"+ sellerid);
 			System.out.println("the email"+mail);
 		}
 		
@@ -420,4 +421,130 @@ public class PropertyRentLeaseDAO {
 		
  }
  
+// public static void showdetails() throws ClassNotFoundException, SQLException{
+//	 Connection connection = null;
+//	 PreparedStatement preparedStatement = null;
+//		connection = ConnectionTable.getConnection();
+//		String query="SELECT \r\n"
+//				+ "    pd.property_id,\r\n"
+//				+ "    pd.property_type,\r\n"
+//				+ "    pd.sqft,\r\n"
+//				+ "    pd.furnishing,\r\n"
+//				+ "    pd.available_from,\r\n"
+//				+ "    pd.rent,\r\n"
+//				+ "    pd.address,\r\n"
+//				+ "    pd.posted_on_date,\r\n"
+//				+ "    pd.EB_Bill,\r\n"
+//				+ "    pd.owner_id,\r\n"
+//				+ "    pd.rent_id,\r\n"
+//				+ "    pd.subscription_id,\r\n"
+//				+ "    pd.is_approval,\r\n"
+//				+ "    u_owner.user_name AS owner_name,\r\n"
+//				+ "    u_owner.email AS owner_email,\r\n"
+//				+ "    u_owner.phonenumber AS owner_phonenumber,\r\n"
+//				+ "    u_renter.user_name AS renter_name,\r\n"
+//				+ "    u_renter.email AS renter_email,\r\n"
+//				+ "    u_renter.phonenumber AS renter_phonenumber\r\n"
+//				+ "FROM \r\n"
+//				+ "    property_details AS pd\r\n"
+//				+ "JOIN \r\n"
+//				+ "    users AS u_owner ON pd.owner_id = u_owner.user_id\r\n"
+//				+ "LEFT JOIN \r\n"
+//				+ "    users AS u_renter ON pd.rent_id = u_renter.user_id;";
+//		preparedStatement = connection.prepareStatement(query);
+//		
+//		//Resultset resultset=preparedStatement.executeQuery();
+//	 
+// }
+// public UsersInfo getUserInfo(int userId) throws ClassNotFoundException, SQLException {
+//     UsersInfo user = null;
+//     Connection connection = null;
+//     PreparedStatement preparedStatement = null;
+//     ResultSet resultSet = null;
+//
+//     try {
+//         // Establish connection
+//         connection = ConnectionTable.getConnection();
+//
+//         // Prepare SQL statement
+//         String query = "SELECT User_name,email users WHERE user_id = ?";
+//         preparedStatement = connection.prepareStatement(query);
+//         preparedStatement.setInt(1, userId);
+//
+//         // Execute query
+//         resultSet = preparedStatement.executeQuery();
+//
+//         // Process result set
+//         if (resultSet.next()) {
+//             user = new UsersInfo();
+//           //  user.setUserId(resultSet.getInt("user_id"));
+//             user.setUsername(resultSet.getString("user_name"));
+//             user.setEmail(resultSet.getString("email"));
+//            // user.setPhoneNumber(resultSet.getString("phonenumber"));
+//         }
+//     } finally {
+//         // Close resources
+//         if (resultSet != null) {
+//             resultSet.close();
+//         }
+//         if (preparedStatement != null) {
+//             preparedStatement.close();
+//         }
+//         if (connection != null) {
+//             connection.close();
+//         }
+//     }
+//
+//     return user;
+// }
+// 
+ 
+ public List<SellerPropertyForm> searchApprovedProperties(String location, int budget) throws ClassNotFoundException, SQLException {
+     List<SellerPropertyForm> properties = new ArrayList<>();
+     Connection connection = null;
+     PreparedStatement preparedStatement = null;
+     ResultSet resultSet = null;
+
+     try {
+    	 connection = ConnectionTable.getConnection();
+         String query = "SELECT * FROM property_details WHERE is_approval = true AND location = ? AND rent <= ?";
+         preparedStatement = connection.prepareStatement(query);
+         preparedStatement.setString(1, location);
+         preparedStatement.setInt(2, budget);
+         resultSet = preparedStatement.executeQuery();
+
+         while (resultSet.next()) {
+             SellerPropertyForm property = new SellerPropertyForm();
+             // Populate property details from result set
+             property.setPropertyId(resultSet.getInt("property_id"));
+             property.setPropertyType(resultSet.getString("property_type"));
+             property.setSqft(resultSet.getInt("sqft"));
+             property.setFurnishing(resultSet.getString("furnishing"));
+             property.setAvailableFrom(resultSet.getDate("available_from"));
+             property.setRent(resultSet.getInt("rent"));
+             property.setAddress(resultSet.getString("address"));
+             property.setPostedOnDate(resultSet.getDate("posted_on_date"));
+             property.setLocation(resultSet.getString("location"));
+             property.setOwnerId(resultSet.getInt("owner_id"));
+             property.setRentId(resultSet.getInt("rent_id"));
+             property.setSubscriptionId(resultSet.getInt("subscription_id"));
+             property.setApproval(resultSet.getBoolean("is_approval"));
+
+             properties.add(property);
+         }
+     } finally {
+         // Close the resources
+         if (resultSet != null) {
+             resultSet.close();
+         }
+         if (preparedStatement != null) {
+             preparedStatement.close();
+         }
+         if (connection != null) {
+             connection.close();
+         }
+     }
+
+     return properties;
+ }
 }

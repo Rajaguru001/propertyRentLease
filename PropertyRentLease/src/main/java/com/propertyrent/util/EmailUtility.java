@@ -9,16 +9,17 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 public class EmailUtility {
-    // Private constructor to prevent instantiation
+    
     private EmailUtility() {
         throw new UnsupportedOperationException("Utility class cannot be instantiated");
     }
     public static void sendEmail(String toEmail, String subject, String body) throws MessagingException {
-        String fromEmail = "kishorkishor2003@gmail.com"; // Replace with your email
-        String password = "aclsxrczqgzpuqjr"; // Replace with your email password
+        String fromEmail = "nrajaguru24@gmail.com"; 
+        String password = "tozofskpidfsbkiw"; 
+      
 
         Properties props = new Properties();
-        props.put("mail.smtp.host", "smtp.gmail.com"); // SMTP server
+        props.put("mail.smtp.host", "smtp.gmail.com"); 
         props.put("mail.smtp.port", "587");
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.starttls.enable", "true");
@@ -29,12 +30,12 @@ public class EmailUtility {
             }
         });
 
-        // Define the HTML content
+       
         String htmlContent = "<!DOCTYPE html>" +
                 "<html lang=\"en\">" +
                 "<head>" +
              
-                "<title>ChainTrade - Welcome</title>" +
+                "<title>EliteRentals - Welcome</title>" +
                 "<link href=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css\" rel=\"stylesheet\">" +
 
                 "<link href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css\" rel=\"stylesheet\">" +
@@ -66,14 +67,14 @@ public class EmailUtility {
                 "</body>" +
                 "</html>";
 
-        // Create a MimeMessage object and set the content type to text/html
+        
         Message message = new MimeMessage(session);
         message.setFrom(new InternetAddress(fromEmail));
         message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail));
         message.setSubject(subject);
         message.setContent(htmlContent, "text/html");
 
-        // Send the email
+       
         Transport.send(message);
     }
 }

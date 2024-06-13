@@ -190,19 +190,19 @@
     background-color: #f5f5f5;
   }
 
-  /* Location icon styling */
+ 
   .search-container .location-icon {
     color: red;
     margin-right: 5px;
   }
 
-  /* House icon styling */
+ 
   .search-container .house-icon {
     color: red;
     margin-right: 5px;
   }
 
-  /* Range input styling */
+
   .search-container input[type="number"]::-webkit-inner-spin-button,
   .search-container input[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none;

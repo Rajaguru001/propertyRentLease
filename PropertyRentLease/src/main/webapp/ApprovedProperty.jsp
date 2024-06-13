@@ -11,126 +11,256 @@
 <head>
 <meta charset="UTF-8">
 <title>Approved Properties</title>
-<style >
+<style>
 #properties-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    align-items: flex-start;
-    margin-top: 20px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	align-items: flex-start;
+	margin-top: 20px;
 }
 
-
 .property {
-    width: 1000px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 20px;
-    margin-bottom: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	width: 1000px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	padding: 20px;
+	margin-bottom: 20px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .property h2 {
-    margin-top: 0;
+	margin-top: 0;
 }
 
 .property p {
-    margin: 5px 0;
+	margin: 5px 0;
 }
 
 .property img {
-    margin-bottom: 10px;
+	margin-bottom: 10px;
 }
 
 .navbar {
-    background-color:#FF204E;
-    overflow: hidden;
-    margin-bottom: 20px;
+	background-color: #FF204E;
+	overflow: hidden;
+	margin-bottom: 20px;
 }
 
 .navbar a {
-    display: inline-block; 
-    color: white;
-    text-align: center;
-    padding: 14px 20px;
-    text-decoration: none;
+	display: inline-block;
+	color: white;
+	text-align: center;
+	padding: 14px 20px;
+	text-decoration: none;
 }
 
 .navbar a:hover {
-    background-color: #29252C;
+	background-color: #29252C;
 }
 
 .logo {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .logo img {
-    max-height: 30px;
-    margin-right: 10px;
+	max-height: 30px;
+	margin-right: 10px;
 }
 
 button[type="submit"] {
-    background-color: #FF204E;
-    color: white;
-    border: none;
-    cursor: pointer;
-    padding: 12px 24px;
-    border-radius: 4px;
-    transition: background-color 0.3s, box-shadow 0.3s;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	background-color: #FF204E;
+	color: white;
+	border: none;
+	cursor: pointer;
+	padding: 12px 24px;
+	border-radius: 4px;
+	transition: background-color 0.3s, box-shadow 0.3s;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 button[type="submit"]:hover {
-    background-color: #FF1654;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+	background-color: #FF1654;
+	box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .comment-box {
-    margin-top: 20px;
-    background-color: #f0f2f5;
-    border-radius: 8px;
-    padding: 20px;
+	margin-top: 20px;
+	background-color: #f0f2f5;
+	border-radius: 8px;
+	padding: 20px;
 }
 
 .comment-box textarea {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc; 
-    border-radius: 4px;
-    resize: none;
-    font-family: Arial, sans-serif; 
-    font-size: 14px; 
+	width: 100%;
+	padding: 10px;
+	margin-bottom: 10px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	resize: none;
+	font-family: Arial, sans-serif;
+	font-size: 14px;
 }
 
 .comment-box textarea:focus {
-    border-color: #FF204E; 
-    outline: none;
-    box-shadow: 0 0 5px rgba(255, 32, 78, 0.5); 
+	border-color: #FF204E;
+	outline: none;
+	box-shadow: 0 0 5px rgba(255, 32, 78, 0.5);
 }
+
 .property p {
-    margin: 5px 0;
-    font-family: 'Arial', sans-serif; 
-    font-size: 16px;
-    line-height: 1.5; 
-    color: #333; 
-    text-decoration: none; 
+	margin: 5px 0;
+	font-family: 'Arial', sans-serif;
+	font-size: 16px;
+	line-height: 1.5;
+	color: #333;
+	text-decoration: none;
+}
+/*  */
+.dropdown {
+	position: relative;
+	display: inline-block;
+}
+
+.dropdown-content {
+	display: none;
+	position: absolute;
+	background-color: #f9f9f9;
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	z-index: 1;
+}
+
+.dropdown-content a {
+	color: black;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+}
+
+.dropdown-content a:hover {
+	background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+	display: block;
+}
+
+.dropbtn i.fa-caret-down {
+	margin-left: 5px;
+}
+
+.content {
+	margin-top: 100px;
+	text-align: center;
+}
+
+.search-container {
+	display: inline-block;
+	text-align: center;
+	width: 75%;
+	max-width: 700px;
+	margin: 0 auto;
+	margin-top: 6.5%;
+}
+
+.search-container form {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: rgba(255, 255, 255, 0.7); /* Added opacity */
+	border: 2px solid #FF204E;
+	border-radius: 20px;
+	padding: 20px;
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.search-container select, .search-container input[type="number"] {
+	border: none;
+	padding: 8px;
+	font-family: 'Roboto', sans-serif;
+	font-size: 16px;
+	outline: none;
+	margin-right: 10px;
+	border-radius: 5px;
+}
+
+.search-container button {
+	border: none;
+	background-color: #FF204E; /* Red color */
+	color: white;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+	border-radius: 20px;
+	padding: 8px 20px;
+	font-size: 14px;
+}
+
+.search-container button i {
+	color: white; /* Search icon color */
+}
+
+.search-container button:hover {
+	background-color: red; /* Dark red on hover */
+}
+
+.search-container .location-icon {
+	color: red;
+	margin-right: 5px;
+}
+
+/* House icon styling */
+.search-container .house-icon {
+	color: red;
+	margin-right: 5px;
+}
+
+/* Range input styling */
+.search-container input[type="number"]::-webkit-inner-spin-button,
+	.search-container input[type="number"]::-webkit-outer-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
 }
 </style>
 </head>
 <body>
-<form id="Propertybuyer" action="PropertyRentBuyer" method="post">
-<div class="navbar">
-    <h1 class="logo">
-        <img src="image/EliteRentalslogo.jpg" alt="EliteRentals Logo">
-        <span class="company-name">EliteRentals</span>
-    </h1>
-</div>
-<h1>Approved Properties</h1>
-<div id="properties-container">
-    <%
+	<div class="navbar">
+		<h1 class="logo">
+			<img src="image/EliteRentalslogo.jpg" alt="EliteRentals Logo">
+			<span class="company-name">EliteRentals</span>
+		</h1>
+	</div>
+	<form action="PropertyRentSearch" method="post">
+		<div class="search-container">
+
+				<select name="location" id="location" required>
+					<option value="">Select Location</option>
+					<option value="Madurai">Madurai</option>
+					<option value="Coimbatore">Coimbatore</option>
+					<option value="Chennai">Chennai</option>
+					<option value="Trichy">Trichy</option>
+					<option value="Theni">Theni</option>
+				</select> <select name="budget" id="budget" required>
+					<option value="">Select Budget</option>
+					<option value="1000">1000</option>
+					<option value="5000">5000</option>
+					<option value="10000">10000</option>
+					<option value="20000">20000</option>
+					<option value="50000">50000</option>
+				</select>
+				<button type="submit">
+					<i class="fas fa-search"></i>
+				</button>
+		</div>
+	</form>
+	<form id="Propertybuyer" action="PropertyRentBuyer" method="post">
+
+
+		<h1>Approved Properties</h1>
+		<div id="properties-container">
+			<%
         
         PropertyRentLeaseDAO propertyLeaseDAO = new PropertyRentLeaseDAO();
         List<SellerPropertyForm> approvedProperties = (List<SellerPropertyForm>) request.getAttribute("approvedProperties");
@@ -139,72 +269,83 @@ button[type="submit"]:hover {
                 List<PropertyImage> propertyImages = propertyLeaseDAO.getPropertyImages(property.getPropertyId());
                 List<Comments> comments=propertyLeaseDAO.getcomment(property.getPropertyId());
     %>
-    <div class="property">
-        <h2>
-            Property ID:
-            <%= property.getPropertyId() %></h2>
-            
-            <p>
-            Property Images:
-            <% for (PropertyImage image : propertyImages) { %>
-            <img
-                src="data:image/jpeg;base64,<%= Base64.getEncoder().encodeToString(image.getImage()) %>"
-                width="250" height="200" />
-            <% } %>
-        </p>
-        <p>
-            Type:
-            <%= property.getPropertyType() %></p>
-        <p>
-            Square Feet:
-            <%= property.getSqft() %></p>
-        <p>
-            Furnishing:<%= property.getFurnishing() %></p>
-        <p>
-            AvailableFrom:<%= property.getAvailableFrom() %></p>
-        <p>
-            Price:<%= property.getRent() %></p>
-        <p>
-            Address:<%= property.getAddress() %></p>
-        <p>
-            Posted On Date:<%= property.getPostedOnDate() %></p>
-        <p>
-            Location:<%= property.getLocation() %></p>
-       
-        <p>
-            
-            comments:</p>
-             <%
+
+			<div class="property">
+				<h2>
+					Property ID:
+					<%= property.getPropertyId() %></h2>
+
+				<p>
+					Property Images:
+					<% for (PropertyImage image : propertyImages) { %>
+					<img
+						src="data:image/jpeg;base64,<%= Base64.getEncoder().encodeToString(image.getImage()) %>"
+						width="250" height="200" />
+					<% } %>
+				</p>
+				<p>
+					Type:
+					<%= property.getPropertyType() %></p>
+				<p>
+					Square Feet:
+					<%= property.getSqft() %></p>
+				<p>
+					Furnishing:<%= property.getFurnishing() %></p>
+				<p>
+					AvailableFrom:<%= property.getAvailableFrom() %></p>
+				<p>
+					Price:<%= property.getRent() %></p>
+				<p>
+					Address:<%= property.getAddress() %></p>
+				<p>
+					Posted On Date:<%= property.getPostedOnDate() %></p>
+				<p>
+					Location:<%= property.getLocation() %></p>
+				<p></p>
+
+
+				<p>Property Reviews</p>
+
+				<%
             UsersInfo userId=(UsersInfo)session.getAttribute("user"); 
         %>
-           <p> <% for(Comments comment : comments) { %>
-            
-            	
-                <%= comment.getComment_section() %>
+				<p>
+					<% for(Comments comment : comments) { %>
+
+				<p><%=userId.getUsername()%>
+					:<%= comment.getComment_section() %></p>
                 
             <%} %>
 </p>
+				
        
-        <input type="hidden" value=<%=userId.getId()%> name="id">
-        <input type="hidden" value=<%= property.getPropertyId()%> name="propertyId"> 
+        <input type="text" value=<%=userId.getId()%> name="id">
+        <input type="text" value=<%= property.getPropertyId()%>
+					name="propertyId"> 
          <input type="text" value=<%= userId.getEmail()%> name="buyerId">
-          <input type="text" value=<%= property.getOwnerId()%> name="sellerId">
+          <input type="text" value=<%= property.getOwnerId()%>
+					name="sellerId">
          
          <button type="submit">Book Now</button>
-    </form>
+    
+	</form>
     <form action="PropertyRentComment" method="post">
     <%
     
     %>
     
         <input type="hidden" value=<%=userId.getId()%> name="id">
-        <input type="hidden" value=<%= property.getPropertyId()%> name="propertyId">    
-        <input type="hidden" value=<%=userId.getUsername()%> name="username">
+        <input type="hidden" value=<%= property.getPropertyId()%>
+			name="propertyId">    
+        <input type="hidden" value=<%=userId.getUsername()%>
+			name="username">
         <div class="comment-box">
-            <textarea rows="4" cols="50" name="comment" placeholder="Enter your comment here..."></textarea>
+            <textarea rows="4" cols="50" name="comment"
+				placeholder="Enter your comment here..."></textarea>
             <button type="submit">Comment</button>
         </div>
     </form>
+   
         
     </div>
     <%
