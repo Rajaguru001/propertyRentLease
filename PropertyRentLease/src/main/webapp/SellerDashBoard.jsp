@@ -79,19 +79,28 @@
     
     <div class="container">
         <div class="content">
-       <% 
-    List<SellerDashBoardRequest> sellerdashboard = (List<SellerDashBoardRequest>) request.getAttribute("sellerdashboardrequest");
-    PropertyRentLeaseDAO propertyLeaseDAO = new PropertyRentLeaseDAO();
-    
-    for (SellerDashBoardRequest requests : sellerdashboard) {
-%>
-    
-    <p>Owner ID: <%= requests.getOwner_id() %></p>
-    <p>Property ID: <%= requests.getProperty_id() %></p>
-    <p>Rent ID: <%= requests.getRent_id() %></p>
-<%
-    }
-%>
+        			<%
+            UsersInfo userId=(UsersInfo)session.getAttribute("user"); 
+        %>
+       
+             <% 
+             
+        List<SellerDashBoardRequest> sellerdashboard = PropertyRentLeaseDAO.sellerdashboard(userId.getId());
+        if (sellerdashboard != null && !sellerdashboard.isEmpty()) {
+            for (SellerDashBoardRequest requests : sellerdashboard) {
+        %>
+            <p>Owner ID: <%= requests.getOwner_id() %></p>
+            <p>Property ID: <%= requests.getProperty_id() %></p>
+            <p>Rent ID: <%= requests.getRent_id() %></p>
+           
+            
+            <hr>
+        <% 
+            }
+        } else {
+        %>
+            <p>No data available</p>
+        <% } %>
 
 <h2>Welcome back, <%= ((UsersInfo) session.getAttribute("user")).getUsername() %>!</h2>
 <p>This is your Seller Dashboard.</p>

@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.mysql.cj.protocol.Resultset;
+
 import com.propertyrent.model.Comments;
 import com.propertyrent.model.PropertyImage;
 import com.propertyrent.model.SellerDashBoardRequest;
@@ -37,7 +37,7 @@ public class PropertyRentLeaseDAO {
 			p.setString(4, User.getPhonenumber());
 
 			p.execute();
-			System.out.println("registered  successfull");
+			
 			return true;
 		}
 
@@ -69,7 +69,7 @@ public class PropertyRentLeaseDAO {
 
 	public UsersInfo getUserIdByEmail(UsersInfo User) throws ClassNotFoundException, SQLException {
 		Connection connection = ConnectionTable.getConnection();
-		String query = "select * FROM users WHERE email=?";
+		String query = "select user_id,user_name,password,email,phonenumber FROM users WHERE email=?";
 		PreparedStatement prestm = connection.prepareStatement(query);
 System.out.println("The email ID for user"+User.getId());
 		prestm.setString(1, User.getEmail());
@@ -142,7 +142,7 @@ System.out.println("The email ID for user"+User.getId());
 				preparedStatement.setBlob(1, propertyImageInputStream);
 				preparedStatement.setInt(2, propertyId);
 				preparedStatement.executeUpdate();
-				// Close the PreparedStatement inside the loop
+				
 				preparedStatement.close();
 			}
 		} catch (SQLException e) {
@@ -212,7 +212,7 @@ System.out.println("The email ID for user"+User.getId());
 				InputStream inputStream = BlobToInputStreamConverter.convertBlobToInputStream(blob);
 
 				val.add(spf);
-				System.out.println(val);
+				
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -396,7 +396,7 @@ System.out.println("The email ID for user"+User.getId());
 		preparedStatement.setInt(1, propertyid);
 		ResultSet resultSet = preparedStatement.executeQuery();
 		while (resultSet.next()) {
-			comments.setComment_section(resultSet.getString("comment_section"));
+			comments.setCommentsection(resultSet.getString("comment_section"));
 			userComments.add(comments);
 
 		}
@@ -521,7 +521,7 @@ public static void buyerrequest(int ownersid, int buyersid, int propertesid) thr
 		prepare.executeUpdate();
 }
 
-public static List<SellerDashBoardRequest> sellerdashboard(int propertyid) throws ClassNotFoundException, SQLException {
+public static List<SellerDashBoardRequest> sellerdashboard(int buyersid) throws ClassNotFoundException, SQLException {
     List<SellerDashBoardRequest> sellerdashboard = new ArrayList<>();
     Connection connection = null;
     PreparedStatement preparedStatement = null;
@@ -529,9 +529,9 @@ public static List<SellerDashBoardRequest> sellerdashboard(int propertyid) throw
 
     try {
         connection = ConnectionTable.getConnection();
-        String query = "SELECT * FROM request WHERE rent_id = ?";
+        String query = "SELECT * FROM request WHERE owner_id = ?";
         preparedStatement = connection.prepareStatement(query);
-        preparedStatement.setInt(1, propertyid);
+        preparedStatement.setInt(1, buyersid);
         resultSet = preparedStatement.executeQuery();
 
         while (resultSet.next()) {
@@ -540,9 +540,12 @@ public static List<SellerDashBoardRequest> sellerdashboard(int propertyid) throw
             int rentId = resultSet.getInt("rent_id");
             int requestId = resultSet.getInt("request_id");
             boolean approval = resultSet.getBoolean("approval");
+            int propertyid=resultSet.getInt("property_id");
+            
+         
 
            
-            SellerDashBoardRequest request = new SellerDashBoardRequest(ownerId, rentId, requestId, approval);
+            SellerDashBoardRequest request = new SellerDashBoardRequest(ownerId, rentId, requestId, approval,propertyid);
             sellerdashboard.add(request);
         }
     } finally {

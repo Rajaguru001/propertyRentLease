@@ -38,13 +38,14 @@ public class PropertyRentBuyer extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	@Override
 	 */
+	@Override	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		SellerDashBoardRequest sdbr=new SellerDashBoardRequest();
 		PropertyRentLeaseDAO prl=new PropertyRentLeaseDAO();
@@ -52,7 +53,7 @@ public class PropertyRentBuyer extends HttpServlet {
 		int buyerid=Integer.parseInt(request.getParameter("id"));
 		int propertyid=Integer.parseInt(request.getParameter("propertyId"));
 		try {
-			prl.buyer(buyerid,propertyid);
+			PropertyRentLeaseDAO.buyer(buyerid,propertyid);
 			String email=request.getParameter("buyerId");
 			String subject=" Important Notice: Regarding Your Recent Inquiry on Elite Rentals";
 			String body="Thank you for your interest in Elite Rentals. We appreciate your inquiry and are delighted to assist you in finding the perfect rental solution. However, we want to ensure that your experience is safe and secure.\r\n"
@@ -103,19 +104,14 @@ public class PropertyRentBuyer extends HttpServlet {
 		
 		try {
 			PropertyRentLeaseDAO.buyerrequest(ownersid,buyersid,propertesid);
+			sellerdashboardrequest = PropertyRentLeaseDAO.sellerdashboard(buyersid);
+			
+		    request.setAttribute("sellerdashboardrequest", sellerdashboardrequest);
 		} catch (ClassNotFoundException | SQLException e) {
 
 			e.printStackTrace();
 		}
 	  
-		try {
-			sellerdashboardrequest=PropertyRentLeaseDAO.sellerdashboard(propertyid);
-		} catch (ClassNotFoundException | SQLException e) {
-
-			e.printStackTrace();
-		}
-		
-		 request.setAttribute("sellerdashboardrequest",sellerdashboardrequest);
 		
 	}
 

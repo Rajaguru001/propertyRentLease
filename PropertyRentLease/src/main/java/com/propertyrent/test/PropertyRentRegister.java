@@ -25,13 +25,14 @@ public class PropertyRentRegister extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+    @Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
 		String username=request.getParameter("name");
 		String password=request.getParameter("Password");
 		String email=request.getParameter("email");
 		String phonenumber=request.getParameter("phonenumber");
-		UsersInfo User= new UsersInfo(username,password, email,phonenumber);
+		
 		
 		
 		
@@ -40,8 +41,9 @@ public class PropertyRentRegister extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+		
 	}
 
 }

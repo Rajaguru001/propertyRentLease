@@ -48,9 +48,7 @@ public class PropertyRentLogin extends HttpServlet {
 				try {		
 						UsersInfo userId=prl.getUserIdByEmail(User);
 						HttpSession session = request.getSession();
-						System.out.println(userId.getId());
-						System.out.println(userId.getUsername());
-						System.out.println(userId.getEmail());
+					
 						session.setAttribute("user", userId);
 						
 						UsersInfo adminlogincheck = prl.adminlogincheck(userId);
@@ -87,6 +85,9 @@ public class PropertyRentLogin extends HttpServlet {
 				 
 				
 				break;
+				default:
+					
+					break;
 		}
 			
 			  if ("PostProperty".equals(action)) {
@@ -97,7 +98,7 @@ public class PropertyRentLogin extends HttpServlet {
 		            
 			            try {
 			            UsersInfo ownerId=PropertyRentLeaseDAO.checkseller(adminlogincheck);
-			            System.out.println("the ownerid"+ownerId);
+			            
 			            if (ownerId!= null) {
 			                response.sendRedirect("SellerDashBoard.jsp");
 			            } else {

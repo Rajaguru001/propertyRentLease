@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.propertyrent.dao.PropertyRentLeaseDAO;
-import com.propertyrent.model.PropertyImage;
+
 import com.propertyrent.model.SellerPropertyForm;
 
 @WebServlet("/AdminDashboard")
@@ -52,6 +52,12 @@ public class AdminServlet extends HttpServlet {
 				}
         		break;
         		
+        	
+        	 default:
+        	        
+        	        
+        	        break;
+        		
         		
         	}
         	
@@ -78,6 +84,6 @@ public class AdminServlet extends HttpServlet {
             }
             
         }
-        response.sendRedirect("AdminDashBoard.jsp");
+        response.sendRedirect(request.getContextPath() + "/AdminDashBoard.jsp");
     }
 }

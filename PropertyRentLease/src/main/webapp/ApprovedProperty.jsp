@@ -296,7 +296,7 @@ function bookNow() {
 					<% for (PropertyImage image : propertyImages) { %>
 					<img
 						src="data:image/jpeg;base64,<%= Base64.getEncoder().encodeToString(image.getImage()) %>"
-						width="250" height="200" />
+						width="250" height="200" / alt="">
 					<% } %>
 				</p>
 				<p>
@@ -339,7 +339,7 @@ function bookNow() {
         <input type="hidden" value=<%= property.getPropertyId()%>
 					name="propertyId"> 
          <input type="hidden" value=<%= userId.getEmail()%> name="buyerId">
-          <input type="hidden" value=<%= property.getOwnerId()%>
+          <input type="text" value=<%= property.getOwnerId()%>
 					name="sellerId">
          
         <button type="submit" >Book Now</button>

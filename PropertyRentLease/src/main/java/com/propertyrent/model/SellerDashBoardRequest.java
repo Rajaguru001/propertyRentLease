@@ -14,12 +14,13 @@ public class SellerDashBoardRequest {
 	public SellerDashBoardRequest (){
 		
 	}
-	public SellerDashBoardRequest(int owner_id, int rent_id, int request_id, boolean approval) {
+	public SellerDashBoardRequest(int owner_id, int rent_id, int request_id, boolean approval,int property_id) {
 		super();
 		this.owner_id = owner_id;
 		this.rent_id = rent_id;
 		this.request_id = request_id;
 		this.approval = approval;
+		this.property_id=property_id;
 	}
 
 	public int getOwner_id() {
