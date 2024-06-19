@@ -92,6 +92,11 @@
             <p>Owner ID: <%= requests.getOwner_id() %></p>
             <p>Property ID: <%= requests.getProperty_id() %></p>
             <p>Rent ID: <%= requests.getRent_id() %></p>
+             <form action="PropertyRentSellerDashBoard" method="post">
+  <input type="hidden" name="propertyId" value="<%= requests.getProperty_id() %>">
+  <input type="hidden" name="rentid" value="<%=requests.getRent_id() %>">
+                                <button type="submit">Approval</button>
+ </form>
            
             
             <hr>
@@ -104,6 +109,8 @@
 
 <h2>Welcome back, <%= ((UsersInfo) session.getAttribute("user")).getUsername() %>!</h2>
 <p>This is your Seller Dashboard.</p>
+
+
 
             
         </div>

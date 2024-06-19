@@ -25,7 +25,7 @@ public class PropertyRentSearch extends HttpServlet {
      */
     public PropertyRentSearch() {
         super();
-        // TODO Auto-generated constructor stub
+
     }
 
 	/**
@@ -41,11 +41,13 @@ public class PropertyRentSearch extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
 		  String location = request.getParameter("location");
-	        int budget = Integer.parseInt(request.getParameter("budget"));
+	        String budgets =(request.getParameter("budget"));
+	        
 
 	        PropertyRentLeaseDAO propertyDAO = new PropertyRentLeaseDAO();
 	        List<SellerPropertyForm> filteredProperties = null;
 			try {
+				int budget=Integer.parseInt(budgets);
 				filteredProperties = propertyDAO.searchApprovedProperties(location, budget);
 			} catch (ClassNotFoundException | SQLException e) {
 

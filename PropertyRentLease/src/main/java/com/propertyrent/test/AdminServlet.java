@@ -41,10 +41,12 @@ public class AdminServlet extends HttpServlet {
         	switch(action){
         	case "search":
         		String location=request.getParameter("location");
-        		int budget=Integer.parseInt(request.getParameter("budget"));
+        		String budgets=(request.getParameter("budget"));
+        		
         		
         		
         		try {
+        			int budget=Integer.parseInt(budgets);
         			approvedProperties=propertyLeaseDAO.searchApprovedProperties(location,budget);
         			 request.setAttribute("approvedProperties", approvedProperties);
 				} catch (ClassNotFoundException | SQLException e) {
@@ -73,17 +75,22 @@ public class AdminServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int propertyId = Integer.parseInt(request.getParameter("propertyId"));
+        String propertysId =(request.getParameter("propertyId"));
+        int propertyId=Integer.parseInt(propertysId);
         if (propertyId != 0) {
             PropertyRentLeaseDAO propertyDAO = new PropertyRentLeaseDAO();
             try {
                 propertyDAO.approveProperty(propertyId);
+                response.sendRedirect(request.getContextPath() + "/AdminDashBoard.jsp");
             } catch (SQLException | ClassNotFoundException e) {
                 e.printStackTrace();
                
             }
             
         }
-        response.sendRedirect(request.getContextPath() + "/AdminDashBoard.jsp");
+        
+       
+        
+         
     }
 }

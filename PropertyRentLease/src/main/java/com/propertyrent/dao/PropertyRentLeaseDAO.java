@@ -565,6 +565,27 @@ public static List<SellerDashBoardRequest> sellerdashboard(int buyersid) throws 
 }
 
 
+public static void sellerproperty(int propertyId) throws SQLException, ClassNotFoundException {
+	Connection connection = null;
+	PreparedStatement statement = null;
+	try {
+		connection = ConnectionTable.getConnection();
+		String sql = "update request set approval =true  where property_id =?";
+		statement = connection.prepareStatement(sql);
+
+		statement.setInt(1, propertyId);
+		statement.executeUpdate();
+	} finally {
+		if (statement != null) {
+			statement.close();
+		}
+		if (connection != null) {
+			connection.close();
+		}
+	}
+}
+
+
 
 
 }

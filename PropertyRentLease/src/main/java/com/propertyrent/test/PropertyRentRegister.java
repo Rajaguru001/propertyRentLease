@@ -28,10 +28,7 @@ public class PropertyRentRegister extends HttpServlet {
     @Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String username=request.getParameter("name");
-		String password=request.getParameter("Password");
-		String email=request.getParameter("email");
-		String phonenumber=request.getParameter("phonenumber");
+		
 		
 		
 		

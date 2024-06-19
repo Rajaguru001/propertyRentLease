@@ -329,7 +329,7 @@ function bookNow() {
 					<% for(Comments comment : comments) { %>
 
 				<p><%=userId.getUsername()%>
-					:<%= comment.getComment_section() %></p>
+					:<%= comment.getCommentsection() %></p>
                 
             <%} %>
 </p>
@@ -351,7 +351,7 @@ function bookNow() {
     %>
     
         <input type="hidden" value=<%=userId.getId()%> name="id">
-        <input type="hidden" value=<%= property.getPropertyId()%>
+        <input type="text" value=<%= property.getPropertyId()%>
 			name="propertyId">    
         <input type="hidden" value=<%=userId.getUsername()%>
 			name="username">

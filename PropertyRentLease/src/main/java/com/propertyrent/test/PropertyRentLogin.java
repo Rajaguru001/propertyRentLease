@@ -32,6 +32,7 @@ public class PropertyRentLogin extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+    @Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
 		String username=request.getParameter("name");
@@ -39,7 +40,7 @@ public class PropertyRentLogin extends HttpServlet {
 		String email=request.getParameter("email");
 		String phonenumber=request.getParameter("phonenumber");
 		UsersInfo User= new UsersInfo(username,password, email,phonenumber);
-		System.out.println(User.getEmail());
+		
 		PropertyRentLeaseDAO prl=new PropertyRentLeaseDAO();
 		String action = request.getParameter("action");
 		if (action != null) {
@@ -128,8 +129,9 @@ public class PropertyRentLogin extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+    @Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+		
 
 		
 	}
