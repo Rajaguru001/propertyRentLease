@@ -2,6 +2,7 @@ package com.propertyrent.test;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.mail.MessagingException;
 import javax.servlet.ServletException;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.propertyrent.dao.PropertyRentLeaseDAO;
+import com.propertyrent.model.SellerDashBoardRequest;
 import com.propertyrent.util.EmailUtility;
 
 /**
@@ -19,6 +21,8 @@ import com.propertyrent.util.EmailUtility;
 @WebServlet("/PropertyRentBuyer")
 public class PropertyRentBuyer extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -31,6 +35,7 @@ public class PropertyRentBuyer extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		response.getWriter().append("Served at: ").append(request.getContextPath());
@@ -38,16 +43,12 @@ public class PropertyRentBuyer extends HttpServlet {
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	@Override
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		SellerDashBoardRequest sdbr=new SellerDashBoardRequest();
 		PropertyRentLeaseDAO prl=new PropertyRentLeaseDAO();
-//		String action=request.getParameter("action");
-//		if(action!=null) {
-//			switch(action) {
-//			case "search":
-//			  request.se
-//			}
-//		}
+		List<SellerDashBoardRequest>sellerdashboardrequest=null;
 		int buyerid=Integer.parseInt(request.getParameter("id"));
 		int propertyid=Integer.parseInt(request.getParameter("propertyId"));
 		try {
@@ -70,9 +71,7 @@ public class PropertyRentBuyer extends HttpServlet {
 			
 			String ownerid=request.getParameter("sellerId");
 			int ownerId =Integer.parseInt(ownerid);
-			System.out.println("the email for seller "+ownerId);
 			String ownermailid=prl.owneremailid(ownerId);
-			System.out.println("the email for seller "+ownermailid);
 			String subject1="Connection Details: Elite Rentals Inquiry ";
 			String body1="Thank you for your interest in our rental property listed on Elite Rentals. We appreciate your inquiry and would like to facilitate your connection with the seller.\r\n"
 					+ "\r\n"
@@ -94,6 +93,29 @@ public class PropertyRentBuyer extends HttpServlet {
 			e.printStackTrace();
 		}
 		
+		int ownersid=Integer.parseInt(request.getParameter("sellerId"));
+		int buyersid=Integer.parseInt(request.getParameter("id"));
+		int propertesid=Integer.parseInt(request.getParameter("propertyId"));
+		
+		sdbr.setOwner_id(ownersid);
+		sdbr.setRent_id(buyersid);
+		sdbr.setProperty_id(propertesid);
+		
+		try {
+			PropertyRentLeaseDAO.buyerrequest(ownersid,buyersid,propertesid);
+		} catch (ClassNotFoundException | SQLException e) {
+
+			e.printStackTrace();
+		}
+	  
+		try {
+			sellerdashboardrequest=PropertyRentLeaseDAO.sellerdashboard(propertyid);
+		} catch (ClassNotFoundException | SQLException e) {
+
+			e.printStackTrace();
+		}
+		
+		 request.setAttribute("sellerdashboardrequest",sellerdashboardrequest);
 		
 	}
 

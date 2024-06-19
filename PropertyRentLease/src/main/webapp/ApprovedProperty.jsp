@@ -7,7 +7,7 @@
 <%@ page import="java.io.InputStream"%>
 <%@ page import="java.util.Base64"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <title>Approved Properties</title>
@@ -19,6 +19,8 @@
 	align-items: flex-start;
 	margin-top: 20px;
 }
+
+
 
 .property {
 	width: 1000px;
@@ -118,7 +120,7 @@ button[type="submit"]:hover {
 	color: #333;
 	text-decoration: none;
 }
-/*  */
+
 .dropdown {
 	position: relative;
 	display: inline-block;
@@ -163,14 +165,15 @@ button[type="submit"]:hover {
 	width: 75%;
 	max-width: 700px;
 	margin: 0 auto;
-	margin-top: 6.5%;
+	margin-top: 1.5%;
+	margin-left:250px;
 }
 
 .search-container form {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	background-color: rgba(255, 255, 255, 0.7); /* Added opacity */
+	background-color: rgba(255, 255, 255, 0.7); 
 	border: 2px solid #FF204E;
 	border-radius: 20px;
 	padding: 20px;
@@ -189,7 +192,7 @@ button[type="submit"]:hover {
 
 .search-container button {
 	border: none;
-	background-color: #FF204E; /* Red color */
+	background-color: #FF204E; 
 	color: white;
 	cursor: pointer;
 	transition: background-color 0.3s ease;
@@ -199,11 +202,11 @@ button[type="submit"]:hover {
 }
 
 .search-container button i {
-	color: white; /* Search icon color */
+	color: white; 
 }
 
 .search-container button:hover {
-	background-color: red; /* Dark red on hover */
+	background-color: red; 
 }
 
 .search-container .location-icon {
@@ -211,18 +214,32 @@ button[type="submit"]:hover {
 	margin-right: 5px;
 }
 
-/* House icon styling */
+
 .search-container .house-icon {
 	color: red;
 	margin-right: 5px;
 }
 
-/* Range input styling */
+
 .search-container input[type="number"]::-webkit-inner-spin-button,
 	.search-container input[type="number"]::-webkit-outer-spin-button {
 	-webkit-appearance: none;
 	margin: 0;
 }
+
+.navbar h6{
+padding:0px;
+margin:0px;
+
+}
+
+</style>
+<script>
+function bookNow() {
+    alert("Property booked successfully!");
+    alert("Thank you for booking!");
+}
+</script>
 </style>
 </head>
 <body>
@@ -231,8 +248,11 @@ button[type="submit"]:hover {
 			<img src="image/EliteRentalslogo.jpg" alt="EliteRentals Logo">
 			<span class="company-name">EliteRentals</span>
 		</h1>
+		<a href="ContentPage.jsp"><h6>Home</h6></a>
 	</div>
-	<form action="PropertyRentSearch" method="post">
+	<form action="AdminDashboard" method="get">
+	<input type="hidden" name="action" value="search">
+	<input type="hidden" name="search" value="search">
 		<div class="search-container">
 
 				<select name="location" id="location" required>
@@ -258,7 +278,7 @@ button[type="submit"]:hover {
 	<form id="Propertybuyer" action="PropertyRentBuyer" method="post">
 
 
-		<h1>Approved Properties</h1>
+		<h1>Properties List</h1>
 		<div id="properties-container">
 			<%
         
@@ -271,10 +291,6 @@ button[type="submit"]:hover {
     %>
 
 			<div class="property">
-				<h2>
-					Property ID:
-					<%= property.getPropertyId() %></h2>
-
 				<p>
 					Property Images:
 					<% for (PropertyImage image : propertyImages) { %>
@@ -319,14 +335,14 @@ button[type="submit"]:hover {
 </p>
 				
        
-        <input type="text" value=<%=userId.getId()%> name="id">
-        <input type="text" value=<%= property.getPropertyId()%>
+        <input type="hidden" value=<%=userId.getId()%> name="id">
+        <input type="hidden" value=<%= property.getPropertyId()%>
 					name="propertyId"> 
-         <input type="text" value=<%= userId.getEmail()%> name="buyerId">
-          <input type="text" value=<%= property.getOwnerId()%>
+         <input type="hidden" value=<%= userId.getEmail()%> name="buyerId">
+          <input type="hidden" value=<%= property.getOwnerId()%>
 					name="sellerId">
          
-         <button type="submit">Book Now</button>
+        <button type="submit" >Book Now</button>
     
 	</form>
     <form action="PropertyRentComment" method="post">
@@ -342,7 +358,7 @@ button[type="submit"]:hover {
         <div class="comment-box">
             <textarea rows="4" cols="50" name="comment"
 				placeholder="Enter your comment here..."></textarea>
-            <button type="submit">Comment</button>
+            <button type="submit" >Comment</button>
         </div>
     </form>
    
@@ -350,7 +366,8 @@ button[type="submit"]:hover {
     </div>
     <%
             }
-        } else {
+        } 
+        else {
     %>
     <p>No properties have been approved yet.</p>
     <%

@@ -39,6 +39,7 @@ public class PropertyRentLogin extends HttpServlet {
 		String email=request.getParameter("email");
 		String phonenumber=request.getParameter("phonenumber");
 		UsersInfo User= new UsersInfo(username,password, email,phonenumber);
+		System.out.println(User.getEmail());
 		PropertyRentLeaseDAO prl=new PropertyRentLeaseDAO();
 		String action = request.getParameter("action");
 		if (action != null) {
@@ -52,7 +53,7 @@ public class PropertyRentLogin extends HttpServlet {
 						System.out.println(userId.getEmail());
 						session.setAttribute("user", userId);
 						
-						UsersInfo adminlogincheck = prl.adminlogincheck(User);
+						UsersInfo adminlogincheck = prl.adminlogincheck(userId);
 						if(adminlogincheck!=null) {
 							if(User.getEmail().matches("\\b[A-Za-z0-9._%+-]+@eliterental\\.com\\b") && User.getPassword().matches("Raju@123")) {
 								response.sendRedirect("AdminDashBoard.jsp");
@@ -87,9 +88,40 @@ public class PropertyRentLogin extends HttpServlet {
 				
 				break;
 		}
-		
+			
+			  if ("PostProperty".equals(action)) {
+		            HttpSession session = request.getSession(false);
+		        	UsersInfo adminlogincheck=(UsersInfo) session.getAttribute("user");
+		        	
+		            if (session != null && session.getAttribute("user") != null) {
+		            
+			            try {
+			            UsersInfo ownerId=PropertyRentLeaseDAO.checkseller(adminlogincheck);
+			            System.out.println("the ownerid"+ownerId);
+			            if (ownerId!= null) {
+			                response.sendRedirect("SellerDashBoard.jsp");
+			            } else {
+			                response.sendRedirect("PostProperty.jsp");
+			            }
+			            
+			            }
+			            catch (ClassNotFoundException | SQLException e) {
+			                e.printStackTrace(); 
+			            }
+			            
+		               
+		            	
+		            } 
+		            else {
+		              
+		                response.sendRedirect("Homepage.jsp");
+		            }
+		            return;
+		        }
 		
 	}
+
+
 }
 
 	/**

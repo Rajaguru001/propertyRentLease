@@ -24,14 +24,14 @@ public class PropertyRentComment extends HttpServlet {
      */
     public PropertyRentComment() {
         super();
-        // TODO Auto-generated constructor stub
+
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
@@ -53,7 +53,7 @@ public class PropertyRentComment extends HttpServlet {
 		try {
 			prl.getcomment(propertyid);
 		} catch (ClassNotFoundException | SQLException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 	
@@ -61,9 +61,11 @@ public class PropertyRentComment extends HttpServlet {
 		try {
 			prl.comment(userid,comment,propertyid);
 		} catch (ClassNotFoundException | SQLException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
+		
+
 		
 		
 		

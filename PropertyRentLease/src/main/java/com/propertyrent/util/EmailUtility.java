@@ -25,6 +25,7 @@ public class EmailUtility {
         props.put("mail.smtp.starttls.enable", "true");
 
         Session session = Session.getInstance(props, new javax.mail.Authenticator() {
+            @Override
             protected javax.mail.PasswordAuthentication getPasswordAuthentication() {
                 return new javax.mail.PasswordAuthentication(fromEmail, password);
             }
@@ -47,12 +48,14 @@ public class EmailUtility {
                 "<body>" +
                 "<div class=\"header bg-light py-3 d-flex align-items-center justify-content-center\">" +
                 "<img src=\"https://codewithsadee.github.io/cryptex/assets/images/logo.svg\" alt=\"Company Logo\">" +
-                "<h3 class=\"mb-0\">ChainTrade</h3>" +
+                "<h3 class=\"mb-0\">EliteRental</h3>" +
                 "</div>" +
                 "<div class=\"content text-center py-5\">" +
                 "<div class=\"container\">" +
                 "<h2>Hey buddy!</h2>"+
-                "<p>Your account is now set up and ready to use. Let’s get started!</p>" +
+                "<p>Certainly! Here's the message condensed:\r\n"
+                + "\r\n"
+                + "\"We appreciate your interest in Elite Rentals and are committed to ensuring your safety and security. We've noticed potential fraudulent activities online and want to caution against making payments to parties claiming association with us. Instead, we recommend direct communication with sellers to facilitate transparent transactions. Should you need assistance or have questions, please reach out to us. Thank you for choosing Elite Rentals; we're dedicated to helping you find the perfect rental property.\"</p>" +
                 "<a href=\"#\" class=\"btn btn-primary\">Explore Now</a>" +
                 "</div>" +
                 "</div>" +

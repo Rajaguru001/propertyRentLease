@@ -73,7 +73,7 @@
             padding: 20px 0;
         }
         
-        /* Center the signup link */
+        
         .signup-link {
             text-align: center;
             margin-top: 10px;
@@ -83,7 +83,7 @@
             display: flex;
             justify-content: space-around;
             flex-wrap: wrap;
-            padding: 0 20px; /* Add some padding to footer columns */
+            padding: 0 20px; 
         }
 
         .footer-col {
@@ -157,19 +157,19 @@
         <table>
             <tr>
                 <td>UserName</td>
-                <td><input type="text" name="name" placeholder="UserName" ></td>
+                <td><input type="text" name="name" placeholder="UserName" required  pattern="[a-zA-Z]+"></td>
             </tr>
             <tr>
                 <td>Password</td>
-                <td><input type="password" name="password" placeholder="Password" ></td>
+                <td><input type="password" name="password" placeholder="Password"  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#&$]).{5,}" required ></td>
             </tr>
              <tr>
                 <td>Email</td>
-                <td><input type="email" name="email" placeholder="email" ></td>
+                <td><input type="email" name="email" placeholder="email" required ></td>
             </tr>
              <tr>
                 <td>PhoneNumber</td>
-                <td><input type="text" name="phonenumber" placeholder="phonenumber" ></td>
+                <td><input type="text" name="phonenumber" placeholder="phonenumber" pattern="[6,7,8,9]{1}[0-9]{9}" required></td>
             </tr>
            
         </table>

@@ -17,7 +17,7 @@
     background-image: url('image/pexels-sevenstormphotography-443383.jpg');
     background-size: cover;
     background-position: center;
-    height: 100vh; /* Adjusted to fit the viewport height */
+    height: 100vh; 
   }
 
   nav {
@@ -102,7 +102,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgba(255, 255, 255, 0.7); /* Added opacity */
+    background-color: rgba(255, 255, 255, 0.7); 
     border: 2px solid #FF204E;
     border-radius: 20px;
     padding: 20px;
@@ -122,7 +122,7 @@
 
   .search-container button {
     border: none;
-    background-color: #FF204E; /* Red color */
+    background-color: #FF204E; 
     color: white;
     cursor: pointer;
     transition: background-color 0.3s ease;
@@ -132,14 +132,14 @@
   }
 
   .search-container button i {
-    color: white; /* Search icon color */
+    color: white;
   }
 
   .search-container button:hover {
-    background-color: red; /* Dark red on hover */
+    background-color: red; 
   }
 
-  /* Styling for Buy and Sell buttons */
+  
   .dropdown-buttons .dropdown button.dropbtn {
     background-color: transparent;
     color: #fff;
@@ -155,7 +155,7 @@
     background-color: #333;
   }
 
-  /* Bold text styling */
+ 
   .bold-text {
     font-weight: bold;
     font-size: 35px;
@@ -164,32 +164,43 @@
   }
 
   
-  .post-property-button a {
-    background-color: white;
-    color: #FF204E;
-    text-decoration: none;
-    padding: 10px 20px;
-    border-radius: 20px;
-    font-weight: bold;
-    font-family: 'Roboto', sans-serif;
-    transition: background-color 0.3s ease;
-    position: relative;
-  }
+ 
+        .post-property-button {
+            margin-top: 8px;
+            text-align: center;
+        }
 
-  .post-property-button a:before {
-    content: '\f005';
-    color:#FFD505;
-    font-family: 'Font Awesome 5 Free';
-    position: absolute;
-    left: 3px;
-    top: 50%;
-    transform: translateY(-50%);
-  }
+        .post-property-button form {
+            display: inline-block;
+        }
 
-  .post-property-button a:hover {
-    background-color: #f5f5f5;
-  }
+        .post-property-button button {
+            background-color: white;
+            color: #FF204E;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-family: 'Roboto', sans-serif;
+            transition: background-color 0.3s ease;
+            position: relative;
+            border: 2px solid #FF204E;
+            cursor: pointer;
+        }
 
+        .post-property-button button:before {
+            content: '\f005';
+            color: #FFD505;
+            font-family: 'Font Awesome 5 Free';
+            position: absolute;
+            left: 3px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .post-property-button button:hover {
+            background-color: #f5f5f5;
+        }
  
   .search-container .location-icon {
     color: red;
@@ -241,9 +252,13 @@
             <a href="Homepage.jsp">Login</a> <a href="RegisterPage.jsp">Signup</a>
         </div>
 
-        <div class="post-property-button">
-            <a href="PostProperty.jsp"> <span>Post Property</span></a>
-        </div>
+       <div class="post-property-button"> 
+    <form action="PropertyRentLogin" method="get">
+        <input type="hidden" name="action" value="PostProperty">
+        <button type="submit">Post Property</button>
+    </form>
+    </div> 
+    
     </nav>
     <div class="content">
         <div class="bold-text">

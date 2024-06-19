@@ -83,7 +83,7 @@
         <h2>Sidebar</h2>
         <p>Home</p>
         <p>settings</p>
-        <p>logout</p>
+       <a href="ContentPage.jsp"> <p>logout</p></a>
         <a href="AdminDashboard">Approved Property</a>
     </div>
     <div class="content">
@@ -129,11 +129,11 @@
                                 byte[] ebBillBytes = new byte[ebBillStream.available()];
                                 ebBillStream.read(ebBillBytes);
                                 String ebBillBase64 = Base64.getEncoder().encodeToString(ebBillBytes);
-                            %> <img src="data:image/jpeg;base64,<%= ebBillBase64 %>" width="200" height="100" />
+                            %> <img src="data:image/jpeg;base64,<%= ebBillBase64 %>" width="200" height="100" alt=""/>
                         </td>
                         <td>
                            		 <% for (PropertyImage image : propertyImages) { %>
-                            <img src="data:image/jpeg;base64,<%= Base64.getEncoder().encodeToString(image.getImage()) %>" width="100" height="100" /> <% } %>
+                            <img src="data:image/jpeg;base64,<%= Base64.getEncoder().encodeToString(image.getImage()) %>" width="100" height="100" / alt=""> <% } %>
                         </td>
                         <td>
                             <form action="AdminDashboard" method="post">
