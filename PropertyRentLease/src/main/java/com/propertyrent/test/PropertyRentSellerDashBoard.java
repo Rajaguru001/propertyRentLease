@@ -43,7 +43,7 @@ public class PropertyRentSellerDashBoard extends HttpServlet {
 		String sellerproperty=request.getParameter("propertyId");
 		int sellersproperty=Integer.parseInt(sellerproperty);
 		 if (sellersproperty != 0) {
-	            PropertyRentLeaseDAO propertyDAO = new PropertyRentLeaseDAO();
+	       
 	            try {
 	                PropertyRentLeaseDAO.sellerproperty(sellersproperty);
 	                

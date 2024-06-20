@@ -275,8 +275,7 @@ function bookNow() {
 				</button>
 		</div>
 	</form>
-	<form id="Propertybuyer" action="PropertyRentBuyer" method="post">
-
+ 	
 
 		<h1>Properties List</h1>
 		<div id="properties-container">
@@ -292,7 +291,7 @@ function bookNow() {
 
 			<div class="property">
 				<p>
-					Property Images:
+					
 					<% for (PropertyImage image : propertyImages) { %>
 					<img
 						src="data:image/jpeg;base64,<%= Base64.getEncoder().encodeToString(image.getImage()) %>"
@@ -331,12 +330,13 @@ function bookNow() {
 				<p><%=userId.getUsername()%>
 					:<%= comment.getCommentsection() %></p>
                 
-            <%} %>
+         <%} %>   
 </p>
 				
+      <form id="Propertybuyer" action="PropertyRentBuyer" method="post">
        
         <input type="hidden" value=<%=userId.getId()%> name="id">
-        <input type="hidden" value=<%= property.getPropertyId()%>
+        <input type="number" value=<%= property.getPropertyId()%>
 					name="propertyId"> 
          <input type="hidden" value=<%= userId.getEmail()%> name="buyerId">
           <input type="text" value=<%= property.getOwnerId()%>
@@ -345,6 +345,7 @@ function bookNow() {
         <button type="submit" >Book Now</button>
     
 	</form>
+	
     <form action="PropertyRentComment" method="post">
     <%
     

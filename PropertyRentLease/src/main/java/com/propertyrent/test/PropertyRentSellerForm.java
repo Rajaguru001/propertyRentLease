@@ -80,11 +80,12 @@ public class PropertyRentSellerForm extends HttpServlet {
 		try {
 			prl.sellerdetailsinsert(location,ownerid, propertyType, sqft, furnishing, availableFrom, rentPrice, address,
 					postedOnDate, ebBillInputStream, propertyImagesInputStreamList);
+			request.getRequestDispatcher("subscription.jsp").forward(request, response);
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
 
-		request.getRequestDispatcher("subscription.jsp").forward(request, response);
+		
 	}
 
 }

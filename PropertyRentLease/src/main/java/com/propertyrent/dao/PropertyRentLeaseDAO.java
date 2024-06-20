@@ -415,6 +415,7 @@ System.out.println("The email ID for user"+User.getId());
 		String mail = null;
 		while (resultSet.next()) {
 			mail = resultSet.getString("email");
+			System.out.println("the email is"+mail);
 
 		}
 
@@ -512,6 +513,8 @@ public static void buyerrequest(int ownersid, int buyersid, int propertesid) thr
 	 Connection connection = null;
 	    PreparedStatement preparedStatement = null;
 	    ResultSet resultSet = null;
+	    System.out.println("the owner id="+ownersid);
+	    
 	    connection = ConnectionTable.getConnection();
 	    String query="insert into request(owner_id,rent_id,property_id) values(?,?,?)";
 	    PreparedStatement prepare = connection.prepareStatement(query);

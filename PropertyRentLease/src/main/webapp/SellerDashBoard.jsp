@@ -6,7 +6,7 @@
 <%@ page import="java.io.InputStream"%>
 <%@ page import="java.util.Base64"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <title>Seller Dashboard</title>

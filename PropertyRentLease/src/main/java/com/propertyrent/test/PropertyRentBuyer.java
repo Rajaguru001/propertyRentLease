@@ -52,9 +52,11 @@ public class PropertyRentBuyer extends HttpServlet {
 		PropertyRentLeaseDAO prl = new PropertyRentLeaseDAO();
 		List<SellerDashBoardRequest> sellerdashboardrequest = null;
 		int buyerid = Integer.parseInt(request.getParameter("id"));
+		
 		int propertyid = Integer.parseInt(request.getParameter("propertyId"));
 		String ownerid = request.getParameter("sellerId");
 		int ownerId = Integer.parseInt(ownerid);
+		System.out.println("owner :"+ownerId);
 		String ownermailid = null;
 		try {
 			ownermailid = prl.owneremailid(ownerId);

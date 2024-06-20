@@ -3,7 +3,7 @@ package com.propertyrent.model;
 import java.io.InputStream;
 import java.sql.Date;
 
-import com.mysql.cj.jdbc.Blob;
+
 
 public class SellerPropertyForm {
 	    private int propertyId;
@@ -129,7 +129,7 @@ public class SellerPropertyForm {
 		}
 
 		public SellerPropertyForm() {
-			// TODO Auto-generated constructor stub
+
 		}
 
 		public void setSubscriptionId(int subscriptionId) {

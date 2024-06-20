@@ -3,7 +3,7 @@
 <%@ page import="com.propertyrent.model.SellerPropertyForm" %>
 <%@ page import="com.propertyrent.model.UsersInfo" %>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="ISO-8859-1">
 <title>Subscription</title>
